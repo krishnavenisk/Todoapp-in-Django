@@ -1,0 +1,41 @@
+todoapp/templates/index.html
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        .task { margin: 10px 0; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter a task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <hr>
+
+    {% for task in tasks %}
+        <div class="task">
+            {% if task.completed %}
+                <span class="completed">{{ task.title }}</span>
+            {% else %}
+                <span>{{ task.title }}</span>
+            {% endif %}
+
+            <a href="/complete/{{ task.id }}">Complete</a> |
+            <a href="/delete/{{ task.id }}">Delete</a>
+        </div>
+    {% endfor %}
+</body>
+</html>
