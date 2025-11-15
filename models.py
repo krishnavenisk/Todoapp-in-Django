@@ -6,3 +6,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+
+
+
+after 
+
+command  
+python manage.py makemigrations
+python manage.py migrate
+
